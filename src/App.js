@@ -68,20 +68,15 @@ class App extends React.Component {
     super(props);
     this.state = {
       item: '',
-      list: this.props.obj
-    };
-    this.state.number=0;
-    this.state.list=[];
-    this.state={};
-    this.setValue = this.setValue.bind(this);
+      list: this.props.obj, 
+   number:0 };
+  this.setValue = this.setValue.bind(this);
     this.getValue = this.getValue.bind(this);
     this.setStatus = this.setStatus.bind(this);
     this.SwapUp= this.SwapUp.bind(this);
     this.SwapDown= this.SwapDown.bind(this);
     this.Delete= this.Delete.bind(this);
-   
-  
-  }
+   }
   getList(props) {
     console.log('obj', this.props.obj)
     let items = [];
@@ -119,7 +114,7 @@ setStatus(item) {
       count--;
     }
     this.setState(
-      {number:count, list:l }
+      {number:count }
     )
   }
   SwapUp(item) {
