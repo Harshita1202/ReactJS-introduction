@@ -68,18 +68,16 @@ class App extends React.Component {
     super(props);
     this.state = {
       item: '',
-      list: this.props.obj
-    };
-    this.state.number=0;
-    this.state.list=[];
-    this.state={};
+      list: this.props.obj,
+   number:0 };
     this.setValue = this.setValue.bind(this);
     this.getValue = this.getValue.bind(this);
     this.setStatus = this.setStatus.bind(this);
     this.SwapUp= this.SwapUp.bind(this);
     this.SwapDown= this.SwapDown.bind(this);
     this.Delete= this.Delete.bind(this);
-   
+    this.state.item=[];
+    
   
   }
   getList(props) {
@@ -112,15 +110,17 @@ setStatus(item) {
     )
 
     let count=this.state.number;   //completed item
-    if(l[i].status){
-      count++;
-    }
-    else{
-      count--;
-    }
-    this.setState(
-      {number:count, list:l }
-    )
+    if(l[i].status)
+      {count++} 
+     else
+      {count--} 
+      this.setState(
+        {number:count }
+      )
+    // this.state.num=count;
+    // this.setState(
+    //   {num:count}
+    // )
   }
   SwapUp(item) {
     let x= this.state.list;
@@ -165,7 +165,7 @@ setStatus(item) {
       <input type="text" id="textarea" onChange={this.getValue} ></input>
       <br></br>
       <br></br>
-      <p className="row flex-center" style={{marginTop:20}}> Completed Tasks: ({this.state.number}/{this.state.list.length})</p>
+      <p className="row flex-center" style={{marginTop:20}}> Completed Tasks: {this.state.number}/{this.state.list.length})</p>
 
       <div>
         <ul className="demo">
@@ -186,8 +186,8 @@ class ListItem extends React.Component {
     console.log('ListItem',this.props)
     return <div>
       <li onClick={() => { this.props.setStatus(this.props.item) }} className={this.props.item.status ? "paper paper-btn btn-block btn-success" : "paper paper-btn btn-block"} >{this.props.item.name}</li>
-      <button classname="paper paper-btn btn-warning" onClick={() => { this.props.SwapUp(this.props.item) }}>Up</button>
-      <button classname="paper paper-btn btn-info" onClick={() => { this.props.SwapDown(this.props.item) }}>down</button>
+      <button classname="paper paper-btn btn-success" onClick={() => { this.props.SwapUp(this.props.item) }}>Up</button>
+      <button classname="paper paper-btn btn-warning" onClick={() => { this.props.SwapDown(this.props.item) }}>down</button>
       <button classname="paper paper-btn btn-danger" onClick={() => { this.props.Delete(this.props.item)}}>X</button>
     </div>
   }
